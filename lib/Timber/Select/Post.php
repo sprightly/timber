@@ -4,6 +4,14 @@ namespace Timber\Select {
 
 	class Post implements SelectInterface {
 
+		public static function select_current_post(){
+			global $post;
+			if (get_class($post) == 'WP_Post'){
+				return $post;
+			}
+			throw new \Exception('No post is current stored to global $post');
+		}
+
 		public static function select_by_id($pid){
 			global $post;
 			$rpost = get_post($pid);
@@ -23,10 +31,12 @@ namespace Timber\Select {
 			throw new \Exception("Didn't find an id in TimberSelectPost::select_by_slug");
 		}
 
-		public static function foo(){
-			echo 'bar';
+		public static function select_by_wp_post(WP_Post $wp_post){
+
 		}
 
 	}
+
+	class_alias('Timber\Select\Post', 'TimberSelectPost');
 
 }

@@ -4,21 +4,35 @@
 
 	class Post implements ObjectInterface {
 
-		function __construct($post_data){
+		function __construct($post_data = null){
 			$this->init($post_data);
 		}
 
-		protected function init($post_data){
-			if (is_integer($post_data)){
-				$post_data = \TimberSelectPost::select_by_id($post_data);
+		protected function init($post_data = null){
+			if (is_null($post_data)){
+				$post_data = $this->init_from_null();
+			} else if (is_integer($post_data)){
+				$post_data = $this->init_from_pid($post_data);
 			} else if (is_string($post_data)){
-				$post_data = \TimberSelectPost::select_by_slug($post_data);
+				$post_data = $this->init_from_slug($post_data);
 			}
 			if (is_object($post_data) || is_array($post_data)){
 				$this->import($post_data);
 			} else {
 				throw new \Exception('Failed to retrive $post_data in TimberPost::init');
 			}
+		}
+
+		protected function init_from_null(){
+			return \TimberSelectPost::select_current_post();
+		}
+
+		protected function init_from_pid($pid){
+			return \TimberSelectPost::select_by_id($pid);
+		}
+
+		protected function init_from_slug($post_slug){
+			return \TimberSelectPost::select_by_slug($post_slug);
 		}
 
 		protected function import($info) {
@@ -34,14 +48,6 @@
 			}
 		}
 
-		protected function init_from_pid($pid){
-
-		}
-
-		protected function init_from_slug(){
-
-		}
-
 		public function meta($key, $value = null){
 
 		}
@@ -51,10 +57,13 @@
 		}
 
 		public function title(){
-
+			$title = $this->post_title;
+			return apply_filters('the_title', $title);
 		}
 
 		public function name(){
 
 		}
 	}
+
+	class_alias('Timber\Object\Post', 'TimberPost');
