@@ -42,7 +42,7 @@
 		}
 
 		public function slug(){
-
+			return $this->post_name;
 		}
 
 		public function title(){
@@ -51,7 +51,7 @@
 		}
 
 		public function name(){
-
+			return $this->title();
 		}
 	}
 
