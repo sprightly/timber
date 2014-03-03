@@ -16,8 +16,10 @@
 			} else if (is_string($post_data)){
 				$post_data = $this->init_from_slug($post_data);
 			}
-			if (is_object($post_data) || is_array($post_data)){
+			if ((is_object($post_data) && $post_data->ID)){
 				$this->import($post_data);
+				$custom = \TimberSelectPost::get_custom($post_data->ID);
+				$this->import($custom);
 			} else {
 				throw new \Exception('Failed to retrive $post_data in TimberPost::init');
 			}
