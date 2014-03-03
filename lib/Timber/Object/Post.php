@@ -8,6 +8,15 @@
 			$this->init($post_data);
 		}
 
+		function __get($key){
+			if (method_exists($this, $key)){
+				return $this->$key();
+			}
+			if ($this->$key){
+				return $this->$key;
+			}
+		}
+
 		protected function init($post_data = null){
 			if (is_null($post_data)){
 				$post_data = $this->init_from_null();

@@ -27,8 +27,6 @@
 			$this->assertEquals($post_id, $post->ID);
 		}
 
-
-
 		function testSelectPostByNothing(){
 			$post_id = $this->factory->post->create(array(
 				'post_title' => 'Jared Has Another Test Post'
@@ -38,6 +36,24 @@
 			setup_postdata($post);
 			$timber_post = new TimberPost();
 			$this->assertEquals($post->ID, $timber_post->ID);
+		}
+
+		function testTitleMethod(){
+			$post_title = 'Jaredz Cool Test Post';
+			$post_id = $this->factory->post->create(array(
+				'post_title' => $post_title
+			));
+			$post = new TimberPost($post_id);
+			$this->assertEquals($post_title, $post->title());
+		}
+
+		function testTitleProperty(){
+			$post_title = 'Jaredz Cool Test Post';
+			$post_id = $this->factory->post->create(array(
+				'post_title' => $post_title
+			));
+			$post = new TimberPost($post_id);
+			$this->assertEquals($post_title, $post->title);
 		}
 
 	}
