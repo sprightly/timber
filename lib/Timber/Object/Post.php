@@ -10,7 +10,21 @@
 
 		protected function init($post_data){
 			if (is_integer($post_data)){
-				$post_data = TimberSelectPost::select_by_id($post_data);
+				$post_data = \TimberSelectPost::select_by_id($post_data);
+			}
+			$this->import($post_data);
+		}
+
+		protected function import($info) {
+			if (is_object($info)) {
+				$info = get_object_vars($info);
+			}
+			if (is_array($info)) {
+				foreach ($info as $key => $value) {
+					if(!empty($key)){
+						$this->$key = $value;
+					}
+				}
 			}
 		}
 

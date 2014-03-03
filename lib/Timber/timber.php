@@ -6,6 +6,5 @@
 	require_once('Select/SelectInterface.php');
 	require_once('Select/Post.php');
 
-	class TimberPost extends Timber\Object\Post {}
-
-	class TimberSelectPost extends Timber\Select\Post {}
+	class_alias('Timber\Object\Post', 'TimberPost');
+	class_alias('Timber\Select\Post', 'TimberSelectPost');

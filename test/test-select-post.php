@@ -2,14 +2,11 @@
 
 	class TestSelectPost extends WP_UnitTestCase {
 
-		function testSelectPostById(){
-			$rand = rand(1, 1000);
-			$this->assertEquals($rand, Timber\Select\Post::select_by_id($rand));
-		}
-
-		function testSelectPostByIdSimpleInterface(){
-			$rand = rand(1, 1000);
-			$this->assertEquals($rand, TimberSelectPost::select_by_id($rand));
+		function testSelectPostByIdAndAlias(){
+			$post_id = $this->factory->post->create();
+			$post = new TimberPost($post_id);
+			$this->assertEquals('Timber\Object\Post', get_class($post));
+			$this->assertEquals($post_id, $post->ID);
 		}
 
 	}
