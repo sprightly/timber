@@ -8,6 +8,7 @@
 	Author URI: http://upstatement.com/
 	*/
 
+	require_once('Object/Core.php');
 	require_once('Object/ObjectInterface.php');
 	require_once('Object/Post.php');
 

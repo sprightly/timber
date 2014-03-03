@@ -2,19 +2,10 @@
 
 	namespace Timber\Object;
 
-	class Post implements ObjectInterface {
+	class Post extends Core implements ObjectInterface {
 
 		function __construct($post_data = null){
 			$this->init($post_data);
-		}
-
-		function __get($key){
-			if (method_exists($this, $key)){
-				return $this->$key();
-			}
-			if ($this->$key){
-				return $this->$key;
-			}
 		}
 
 		protected function init($post_data = null){
@@ -44,19 +35,6 @@
 
 		protected function init_from_slug($post_slug){
 			return \TimberSelectPost::select_by_slug($post_slug);
-		}
-
-		protected function import($info) {
-			if (is_object($info)) {
-				$info = get_object_vars($info);
-			}
-			if (is_array($info)) {
-				foreach ($info as $key => $value) {
-					if(!empty($key)){
-						$this->$key = $value;
-					}
-				}
-			}
 		}
 
 		public function meta($key, $value = null){
