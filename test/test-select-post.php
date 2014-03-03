@@ -9,4 +9,12 @@
 			$this->assertEquals($post_id, $post->ID);
 		}
 
+		function testSelectPostBySlugAndAlias(){
+			$post_id = $this->factory->post->create(array(
+				'post_title' => 'Jared Has A Test Post'
+			));
+			$post = new TimberPost('jared-has-a-test-post');
+			$this->assertEquals($post_id, $post->ID);
+		}
+
 	}
