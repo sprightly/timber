@@ -16,7 +16,8 @@
 			$post = get_post($post_id);
 			setup_postdata($post);
 			$timber_post = new TimberPost($post_id);
-			$this->assertEquals($post_id, $post->ID, $timber_post->ID);
+			$this->assertEquals($post_id, $post->ID);
+			$this->assertEquals($post_id, $timber_post->ID);
 		}
 
 		function testSelectPostBySlug(){
@@ -54,6 +55,16 @@
 			));
 			$post = new TimberPost($post_id);
 			$this->assertEquals($post_title, $post->title);
+		}
+
+		function testSettingTitleProperty(){
+			$post_title = 'Jaredz Cool Test Post';
+			$post_id = $this->factory->post->create(array(
+				'post_title' => $post_title
+			));
+			$post = new TimberPost($post_id);
+			$post->title = 'no something else';
+			$this->assertNotEquals($post_title, $post->title);
 		}
 
 	}
