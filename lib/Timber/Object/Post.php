@@ -12,7 +12,7 @@
 			if (is_null($post_data)){
 				$post_data = $this->init_from_null();
 			} else if (is_integer($post_data)){
-				$post_data = $this->init_from_pid($post_data);
+				$post_data = $this->init_from_id($post_data);
 			} else if (is_string($post_data)){
 				$post_data = $this->init_from_slug($post_data);
 			}
@@ -29,7 +29,7 @@
 			return \TimberSelectPost::select_current_post();
 		}
 
-		protected function init_from_pid($pid){
+		protected function init_from_id($pid){
 			return \TimberSelectPost::select_by_id($pid);
 		}
 
