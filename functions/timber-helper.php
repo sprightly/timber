@@ -1,6 +1,8 @@
 <?php
 
-class TimberHelper
+namespace Timber;
+
+class Helper
 {
 
     /**
@@ -111,7 +113,7 @@ class TimberHelper
      * @return TimberFunctionWrapper
      */
     public static function function_wrapper($function_name, $defaults = array(), $return_output_buffer = false) {
-        return new TimberFunctionWrapper($function_name, $defaults, $return_output_buffer);
+        return new FunctionWrapper($function_name, $defaults, $return_output_buffer);
     }
 
     /**
@@ -578,7 +580,4 @@ class TimberHelper
 
 }
 
-class WPHelper extends TimberHelper
-{
-    //for backwards compat, will remove eventually
-}
+class_alias('Timber\Helper', 'TimberHelper');

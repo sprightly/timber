@@ -1,6 +1,8 @@
 <?php
 
-class TimberSite extends TimberCore
+namespace Timber;
+
+class Site extends Core
 {
     public $blogname;
     public $charset;
@@ -45,7 +47,7 @@ class TimberSite extends TimberCore
         $this->url = $this->siteurl;
         $this->id = $this->ID;
         $theme_slug = get_blog_option($info->blog_id, 'stylesheet');
-        $this->theme = new TimberTheme($theme_slug);
+        $this->theme = new Theme($theme_slug);
         $this->description = get_blog_option($info->blog_id, 'blogdescription');
         $this->multisite = true;
     }
@@ -58,8 +60,8 @@ class TimberSite extends TimberCore
         $this->language = get_bloginfo('language');
         $this->charset = get_bloginfo('charset');
         $this->pingback_url = get_bloginfo('pingback_url');
-        $this->theme = new TimberTheme();
-        $this->language_attributes = TimberHelper::function_wrapper('language_attributes');
+        $this->theme = new Theme();
+        $this->language_attributes = Helper::function_wrapper('language_attributes');
         $this->multisite = false;
     }
 
@@ -101,5 +103,6 @@ class TimberSite extends TimberCore
     function url() {
         return $this->get_link();
     }
-
 }
+
+class_alias('Timber\Site', 'TimberSite');

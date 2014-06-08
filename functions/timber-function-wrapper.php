@@ -1,6 +1,8 @@
 <?php
 
-class TimberFunctionWrapper
+namespace Timber;
+
+class FunctionWrapper
 {
 
     private $_function;
@@ -31,7 +33,7 @@ class TimberFunctionWrapper
     public function add_to_twig($twig) {
         $wrapper = $this;
 
-        $twig->addFunction(new Twig_SimpleFunction($this->_function, function () use ($wrapper) {
+        $twig->addFunction(new \Twig_SimpleFunction($this->_function, function () use ($wrapper) {
             return call_user_func_array(array($wrapper, 'call'), func_get_args());
         }));
 
@@ -45,7 +47,7 @@ class TimberFunctionWrapper
         $args = $this->_parse_args(func_get_args(), $this->_args);
 
         if ($this->_use_ob) {
-            return WPHelper::ob_function($this->_function, $args);
+            return Helper::ob_function($this->_function, $args);
         } else {
             return (string)call_user_func_array($this->_function, $args);
         }
@@ -68,3 +70,5 @@ class TimberFunctionWrapper
     }
 
 }
+
+class_alias('Timber\FunctionWrapper', 'TimberFunctionWrapper');

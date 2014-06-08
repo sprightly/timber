@@ -1,6 +1,8 @@
 <?php
 
-class TimberUser extends TimberCore
+namespace Timber;
+
+class User extends Core
 {
 
     public $_link;
@@ -185,5 +187,6 @@ class TimberUser extends TimberCore
     function link() {
         return $this->get_link();
     }
-
 }
+
+class_alias('Timber\User', 'TimberUser');

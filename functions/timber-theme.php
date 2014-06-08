@@ -1,6 +1,8 @@
 <?php
 
-class TimberTheme extends TimberCore
+namespace Timber;
+
+class Theme extends Core
 {
 
     public $name;
@@ -35,7 +37,7 @@ class TimberTheme extends TimberCore
             $this->uri = get_template_directory_uri();
         }
         if ($this->parent_slug && $this->parent_slug != $this->slug) {
-            $this->parent = new TimberTheme($this->parent_slug);
+            $this->parent = new Theme($this->parent_slug);
         }
     }
 

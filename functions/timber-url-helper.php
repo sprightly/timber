@@ -1,6 +1,8 @@
 <?php
 
-class TimberURLHelper
+namespace Timber;
+
+class URLHelper
 {
 
     /**
@@ -63,7 +65,7 @@ class TimberURLHelper
         if (isset($url_info['query']) && strlen($url_info['query'])) {
             $link .= '?' . $url_info['query'];
         }
-        $link = TimberURLHelper::remove_double_slashes($link);
+        $link = self::remove_double_slashes($link);
         return $link;
     }
 
@@ -209,3 +211,5 @@ class TimberURLHelper
     }
 
 }
+
+class_alias('Timber\URLHelper', 'TimberURLHelper');

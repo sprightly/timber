@@ -1,6 +1,8 @@
 <?php
 
-class TimberCore
+namespace Timber;
+
+class Core
 {
 
     public $ID;
@@ -71,3 +73,5 @@ class TimberCore
     }
 
 }
+
+class_alias('Timber\Core', 'TimberCore');
