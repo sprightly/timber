@@ -26,6 +26,19 @@ class TimberTerm extends TimberCore implements TimberCoreInterface {
         $this->init($tid);
     }
 
+    function __get( $field ){
+        if ( !isset( $this->$field ) ) {
+            if ( $meta_value = $this->meta( $field ) ) {
+                $this->$field = $meta_value;
+            } else if (method_exists($this, $field)){
+                $this->$field = $this->$field();
+            } else {
+                $this->$field = false;
+            }
+        }
+        return $this->$field;
+    }
+
     /**
      * @return string
      */

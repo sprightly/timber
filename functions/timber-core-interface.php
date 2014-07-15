@@ -2,7 +2,7 @@
 
 interface TimberCoreInterface {
 
-	public function __call( $field, $args );
+	//public function __call( $field, $args );
 
 	public function __get( $field );
 

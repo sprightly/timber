@@ -13,7 +13,7 @@ abstract class TimberCore {
      */
     function __isset( $field ) {
         if ( isset( $this->$field ) ) {
-            return $this->$field;
+            return true;
         }
         return false;
     }
@@ -23,7 +23,7 @@ abstract class TimberCore {
      * @return mixed
      */
     function __call( $field, $args ) {
-        return $this->__get( $field );
+         return $this->__get( $field );
     }
 
     /**
