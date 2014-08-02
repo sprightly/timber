@@ -13,6 +13,8 @@ Helps you create themes faster with sustainable code. With Timber, you write HTM
 == Description ==
 Timber cleans-up your theme code so, for example, your php file can focus on being the data, while your twig/html file can focus 100% on the HTML and display.
 
+Some "hello world" for test commit =)
+
 Once Timber is installed and activated in your plugin directory, it gives any WordPress theme the ability to take advantage of the power of Twig and other Timber features.
 
 ### Looking for docs?

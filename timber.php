@@ -16,6 +16,8 @@ if (file_exists($composer_autoload)){
 	require_once($composer_autoload);
 }
 
+//Another "hello world" commit change
+
 require_once(__DIR__ . '/functions/timber-twig.php');
 require_once(__DIR__ . '/functions/timber-helper.php');
 require_once(__DIR__ . '/functions/timber-url-helper.php');
